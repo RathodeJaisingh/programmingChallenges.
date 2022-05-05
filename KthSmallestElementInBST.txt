@@ -1,0 +1,53 @@
+public class KthSmallestElementInBST {
+
+    // keep things simple and stupid
+    //problem statement : given binary search tree find the kth smallest element.
+    //Approach 1
+    // simple inorder search of the BST gives the elements in sorted order and hence you can find the Kth smallest element in
+    // O(k) where k represents the Kth smallest element in BST
+
+    public static class BtreeNode {
+        int data = 0;
+        BtreeNode rtptr = null;
+        BtreeNode lfptr = null;
+
+        public BtreeNode() {}
+        public BtreeNode(int i) {
+            this.data = i;
+            this.rtptr = null;
+            this.lfptr = null;
+
+        }
+        public BtreeNode(int data, BtreeNode rightptr, BtreeNode leftptr) {
+            this.rtptr = rightptr;
+            this.lfptr = leftptr;
+            this.data = data;
+        }
+    }
+    public static void main(String[] args) {
+
+        BtreeNode root = new BtreeNode(5);
+        root.lfptr = new BtreeNode(3);
+        root.rtptr = new BtreeNode(6);
+        root.lfptr.lfptr = new BtreeNode(2);
+        root.lfptr.rtptr = new BtreeNode(4);
+        //root.rtptr.lfptr = new BtreeNode(0); null
+        // null
+        root.lfptr.lfptr.lfptr =new BtreeNode(1);
+        inorderTraversal(root);
+
+    }
+    public static int target = 4;
+    public static int  k = 0;
+    public static void inorderTraversal(BtreeNode root)  {
+        if(root == null) return;
+        inorderTraversal(root.lfptr);
+        k++;
+        if( k == target){
+            System.out.println(root.data);
+            return;
+        }
+
+        inorderTraversal(root.rtptr);
+    }
+}

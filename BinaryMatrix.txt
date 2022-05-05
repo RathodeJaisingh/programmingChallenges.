@@ -1,0 +1,51 @@
+public class BinaryMatrix {
+    public static void main(String[] args) {
+        int mat[][] = {{1, 0, 0, 1},
+                {0, 0, 1, 0},
+                {0, 0, 0, 0}};
+
+        System.out.println("Input Matrix :");
+        printMatrix(mat);
+
+        modifyMatrix(mat,3,4);
+
+        System.out.println("Matrix After Modification :");
+        printMatrix(mat);
+    }
+    public static void printMatrix(int[][] mat) {
+        for(int i = 0; i < mat.length;i++) {
+            for (int j = 0; j < mat[0].length; j++) {
+                System.out.print(mat[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    public static void modifyMatrix(int[][] Mat,int R,int C) {
+        int[] row = new int[R];
+        int[] col = new int[C];
+        for(int i = 0; i < R; i++) {
+            row[i] = 0;
+        }
+        for(int i =0; i < C; i++) {
+            col[i] = 0;
+        }
+        for(int i = 0; i < R; i++) {
+            for(int j = 0; j < C; j++) {
+                if(Mat[i][j] == 1) {
+                    row[i] = 1;
+                    col[j] = 1;
+                }
+            }
+        }
+
+        //Modify the Old matrix, so the modification reflects
+
+        for(int i = 0; i < R; i++) {
+            for(int j = 0; j < C;j++) {
+                if(row[i] == 1 || col[j] == 1) {
+                    Mat[i][j] = 1;
+                }
+            }
+        }
+     }
+}
